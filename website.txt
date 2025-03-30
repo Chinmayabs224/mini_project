@@ -4,3 +4,5 @@ https://v0.dev/chat/job-assessment-website-HcRDRpP0YB9?b=b_imrTomkiOoy
 
 job assesment website using lovable:
 https://career-map-assess.lovable.app/
+
+https://v0-job-assessment-website-rr.vercel.app/
