@@ -1,0 +1,65 @@
+2025-04-04 23:02:49,141 - JobScraper - INFO - Starting job scraper
+2025-04-04 23:02:49,154 - JobScraper - INFO - Starting to scrape 29 URLs with 5 workers
+2025-04-04 23:02:49,160 - JobScraper - INFO - Scraping https://www.naukri.com/software-testing-jobs-in-bangalore
+2025-04-04 23:02:49,160 - JobScraper - INFO - Scraping https://jobs.apple.com/en-in/search?location=bengaluru-BGS
+2025-04-04 23:02:49,160 - JobScraper - INFO - Scraping https://www.naukri.com/testing-jobs-in-bangalore
+2025-04-04 23:02:49,161 - JobScraper - INFO - Scraping https://careers.wbd.com/global/en/job/R000091816/Staff-Software-Engineer-Global-Media-Engine-Bangalore
+2025-04-04 23:02:49,161 - JobScraper - INFO - Scraping https://www.careers.philips.com/in/en/job/541493/Software-Engineer-II
+2025-04-04 23:02:52,984 - JobScraper - INFO - Scraping https://in.indeed.com/q-software-2025-jobs.html
+2025-04-04 23:02:53,410 - JobScraper - INFO - Scraping https://careers.jio.com/frmfuncwisejob.aspx?func=2pGaMqAexDY=&desc=am1AraTXtX4/W/EJK6dzzw==&flag=/wASbQn4xyQ=
+2025-04-04 23:02:53,548 - JobScraper - INFO - Scraping https://jobs.apple.com/en-in/search?location=india-INDC
+2025-04-04 23:02:53,569 - JobScraper - WARNING - Failed to retrieve https://www.careers.philips.com/in/en/job/541493/Software-Engineer-II: Status code 410
+2025-04-04 23:02:53,569 - JobScraper - INFO - Scraping https://careers.softwareone.com/en/jobs
+2025-04-04 23:02:53,657 - JobScraper - WARNING - Failed to retrieve https://in.indeed.com/q-software-2025-jobs.html: Status code 403
+2025-04-04 23:02:53,657 - JobScraper - INFO - Scraping https://careers.jio.com/frmfuncwisejob.aspx?func=2pGaMqAexDY=&desc=am1AraTXtX4/W/EJK6dzzw==&flag=/wASbQn4xyQ=
+2025-04-04 23:02:54,923 - JobScraper - INFO - Scraping https://jobs.apple.com/en-in/search?location=india-INDC
+2025-04-04 23:02:55,078 - JobScraper - INFO - Scraping https://careers.softwareone.com/en/jobs
+2025-04-04 23:02:55,310 - JobScraper - INFO - Scraping https://remotive.com/remote-jobs/software-dev
+2025-04-04 23:02:55,727 - JobScraper - WARNING - Failed to retrieve https://remotive.com/remote-jobs/software-dev: Status code 403
+2025-04-04 23:02:55,757 - JobScraper - INFO - Scraping https://www.ey.com/en_in/careers/technology
+2025-04-04 23:02:56,253 - JobScraper - INFO - Scraping https://www.teamlease.com/it-software-engineer-jobs
+2025-04-04 23:02:56,884 - JobScraper - INFO - Scraping https://www.genpact.com/careers/job-search
+2025-04-04 23:02:57,811 - JobScraper - INFO - Scraping https://getwork.org/job-details/software-developer-31466
+2025-04-04 23:02:58,058 - JobScraper - INFO - Scraping https://careers.societegenerale.com/en/job-offers/specialist-software-engineer-java-fsd-2500056B-en
+2025-04-04 23:02:58,485 - JobScraper - INFO - Scraping https://www.wellsfargojobs.com/en/jobs/r-446232/senior-software-engineer/
+2025-04-04 23:02:59,470 - JobScraper - INFO - Scraping https://jobs.cisco.com/
+2025-04-04 23:02:59,558 - JobScraper - INFO - Scraping https://jobs.intuit.com/job/bengaluru/senior-software-engineer/27595/79594907248
+2025-04-04 23:03:00,324 - JobScraper - INFO - Scraping https://www.broadcom.com/company/careers
+2025-04-04 23:03:01,191 - JobScraper - INFO - Scraping https://careers.netapp.com/job/bengaluru/senior-software-engineer-golang-go-microservices/27600/79590564240
+2025-04-04 23:03:01,329 - JobScraper - INFO - Scraping https://www.careers.philips.com/in/en/job/551180/Sr-Software-Manager-Fullstack
+2025-04-04 23:03:01,680 - JobScraper - WARNING - Failed to retrieve https://careers.societegenerale.com/en/job-offers/specialist-software-engineer-java-fsd-2500056B-en: Status code 410
+2025-04-04 23:03:01,680 - JobScraper - INFO - Scraping https://careers.wbd.com/global/en/job/R000091819/Senior-Software-Engineer-Global-Media-Engine-Player-Bangalore
+2025-04-04 23:03:01,745 - JobScraper - INFO - Scraping https://boomi.com/company/careers/
+2025-04-04 23:03:02,541 - JobScraper - INFO - Scraping https://jobs.dell.com/en/job/bengaluru/software-principal-engineer/375/79599075680
+2025-04-04 23:03:03,209 - JobScraper - INFO - Scraping https://careers.abb/us/en/job/96245638/R-D-Senior-Software-Developer
+2025-04-04 23:03:03,500 - JobScraper - INFO - Scraping https://in.linkedin.com/company/nvidia/jobs
+2025-04-04 23:03:07,201 - JobScraper - INFO - Scraped 25 job listings successfully
+2025-04-04 23:03:07,208 - JobScraper - INFO - Results saved to job_listings_data.csv
+2025-04-04 23:03:07,208 - JobScraper - INFO - Job scraper finished
+2025-04-04 23:10:40,000 - INFO - Starting job scraping process...
+2025-04-04 23:10:42,951 - ERROR - Error scraping https://in.indeed.com/q-software-2025-jobs.html: 403 Client Error: Forbidden for url: https://in.indeed.com/q-software-2025-jobs.html
+2025-04-04 23:10:45,120 - ERROR - Error scraping https://www.careers.philips.com/in/en/job/541493/Software-Engineer-II: 410 Client Error: Gone for url: https://www.careers.philips.com/in/en/job/541493/Software-Engineer-II
+2025-04-04 23:10:46,895 - ERROR - Error scraping https://remotive.com/remote-jobs/software-dev: 403 Client Error: Forbidden for url: https://remotive.com/remote-jobs/software-dev
+2025-04-04 23:10:51,972 - ERROR - Error scraping https://careers.societegenerale.com/en/job-offers/specialist-software-engineer-java-fsd-2500056B-en: 410 Client Error: Gone for url: https://careers.societegenerale.com/en/job-offers/specialist-software-engineer-java-fsd-2500056B-en
+2025-04-04 23:10:58,370 - INFO - Scraping completed. Results saved to job_data.csv
+2025-04-04 23:10:58,370 - INFO - Scraping process completed successfully.
+2025-04-04 23:14:42,494 - INFO - Starting job scraping process...
+2025-04-04 23:14:42,494 - ERROR - Error processing files: [Errno 2] No such file or directory: 'job_urls.csv'
+2025-04-04 23:14:42,494 - ERROR - Scraping process failed: [Errno 2] No such file or directory: 'job_urls.csv'
+2025-04-04 23:15:02,001 - INFO - Starting job scraping process...
+2025-04-04 23:15:02,001 - ERROR - Error processing files: [Errno 22] Invalid argument: '"D:\\Machine Learning\\search_results_20250403_223812.csv"'
+2025-04-04 23:15:02,001 - ERROR - Scraping process failed: [Errno 22] Invalid argument: '"D:\\Machine Learning\\search_results_20250403_223812.csv"'
+2025-04-04 23:15:20,015 - INFO - Starting job scraping process...
+2025-04-04 23:15:23,250 - ERROR - Error scraping https://www.careers.philips.com/in/en/job/541493/Software-Engineer-II: 410 Client Error: Gone for url: https://www.careers.philips.com/in/en/job/541493/Software-Engineer-II
+2025-04-04 23:15:24,577 - ERROR - Error scraping https://in.indeed.com/q-software-2025-jobs.html: 403 Client Error: Forbidden for url: https://in.indeed.com/q-software-2025-jobs.html
+2025-04-04 23:15:27,362 - ERROR - Error scraping https://remotive.com/remote-jobs/software-dev: 403 Client Error: Forbidden for url: https://remotive.com/remote-jobs/software-dev
+2025-04-04 23:15:32,905 - ERROR - Error scraping https://careers.societegenerale.com/en/job-offers/specialist-software-engineer-java-fsd-2500056B-en: 410 Client Error: Gone for url: https://careers.societegenerale.com/en/job-offers/specialist-software-engineer-java-fsd-2500056B-en
+2025-04-04 23:15:35,411 - INFO - Scraping completed. Results saved to job_data.csv
+2025-04-04 23:15:35,417 - INFO - Scraping process completed successfully.
+2025-04-04 23:33:53,849 - INFO - Starting job scraping process...
+2025-04-04 23:33:56,938 - ERROR - Error scraping https://www.careers.philips.com/in/en/job/541493/Software-Engineer-II: 410 Client Error: Gone for url: https://www.careers.philips.com/in/en/job/541493/Software-Engineer-II
+2025-04-04 23:33:57,063 - ERROR - Error scraping https://in.indeed.com/q-software-2025-jobs.html: 403 Client Error: Forbidden for url: https://in.indeed.com/q-software-2025-jobs.html
+2025-04-04 23:34:00,221 - ERROR - Error scraping https://remotive.com/remote-jobs/software-dev: 403 Client Error: Forbidden for url: https://remotive.com/remote-jobs/software-dev
+2025-04-04 23:34:02,918 - ERROR - Error scraping https://careers.societegenerale.com/en/job-offers/specialist-software-engineer-java-fsd-2500056B-en: 410 Client Error: Gone for url: https://careers.societegenerale.com/en/job-offers/specialist-software-engineer-java-fsd-2500056B-en
+2025-04-04 23:34:12,996 - INFO - Scraping completed. Results saved to job_data.csv
+2025-04-04 23:34:12,996 - INFO - Scraping process completed successfully.

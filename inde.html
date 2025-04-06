@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerMatrix | Job Assessment Visualization</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary: #3f37c9;
+            --accent: #7209b7;
+            --success: #4cc9f0;
+            --warning: #f8961e;
+            --danger: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --light-gray: #e9ecef;
+            --gray: #adb5bd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f7ff;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #4361ee, #3f37c9);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #5a08a0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(114, 9, 183, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Assessment Preview */
+        .assessment-preview {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .chart-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .skill-bars {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .skill-bar {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .bar {
+            height: 12px;
+            background-color: var(--light-gray);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            background: linear-gradient(90deg, var(--success), var(--primary));
+            transition: width 1s ease;
+        }
+
+        /* Features */
+        .features {
+            background-color: var(--light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* AI Analysis */
+        .ai-analysis {
+            background-color: white;
+        }
+
+        .analysis-container {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+
+        .analysis-text {
+            flex: 1;
+        }
+
+        .analysis-visual {
+            flex: 1;
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 120px;
+        }
+
+        .job-description-input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            resize: vertical;
+            min-height: 200px;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 1.5rem;
+        }
+
+        .analysis-result {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border: 1px solid var(--light-gray);
+            transition: all 0.5s ease;
+        }
+
+        .skill-match {
+            margin-bottom: 1rem;
+        }
+
+        .match-bar {
+            height: 10px;
+            background-color: var(--light-gray);
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .match-fill {
+            height: 100%;
+            background-color: var(--success);
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+
+        .recommendations {
+            margin-top: 1.5rem;
+        }
+
+        .recommendation-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            background-color: var(--light);
+            border-radius: 5px;
+        }
+
+        .recommendation-icon {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        /* Python Integration Section */
+        .python-integration {
+            background-color: var(--light);
+            text-align: center;
+        }
+
+        .code-container {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            text-align: left;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .code-keyword {
+            color: #569cd6;
+        }
+
+        .code-string {
+            color: #ce9178;
+        }
+
+        .code-comment {
+            color: #6a9955;
+        }
+
+        .code-function {
+            color: #dcdcaa;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, #7209b7, #4361ee);
+            color: white;
+            text-align: center;
+            padding: 5rem 0;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            color: var(--success);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--success);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--dark);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .analysis-container {
+                flex-direction: column;
+            }
+            
+            .analysis-visual {
+                position: static;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 3rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <i class="fas fa-brain"></i> CareerMatrix
+                </a>
+                <div class="nav-links">
+                    <a href="#assessment">Assessment</a>
+                    <a href="#ai-analysis">AI Analysis</a>
+                    <a href="#features">Features</a>
+                    <a href="#python">Integration</a>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Transform Your Career Assessment Data</h1>
+            <p>Visualize your skills assessment results and get AI-powered job matching insights to accelerate your career growth.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <a href="#assessment" class="btn btn-primary">View Your Results</a>
+                <a href="#ai-analysis" class="btn btn-outline">Try AI Analysis</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assessment Visualization -->
+    <section class="assessment-section" id="assessment">
+        <div class="container">
+            <div class="section-title">
+                <h2>Your Career Assessment Results</h2>
+                <p>Visual representation of your skills assessment scores highlighting your strengths and areas for improvement.</p>
+            </div>
+            <div class="assessment-preview">
+                <div class="chart-container">
+                    <canvas id="mainChart"></canvas>
+                </div>
+                <div class="skill-bars">
+                    <h3 style="margin-bottom: 2rem; text-align: center;">Detailed Skill Breakdown</h3>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span>Technical Skills</span>
+                            <span>82%</span>
+                        </div>
+                        <div class="bar">
+                            <div class="bar-fill" style="width: 82%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span>Problem Solving</span>
+                            <span>76%</span>
+                        </div>
+                        <div class="bar">
+                            <div class="bar-fill" style="width: 76%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span>Communication</span>
+                            <span>65%</span>
+                        </div>
+                        <div class="bar">
+                            <div class="bar-fill" style="width: 65%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span>Leadership</span>
+                            <span>58%</span>
+                        </div>
+                        <div class="bar">
+                            <div class="bar-fill" style="width: 58%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span>Creativity</span>
+                            <span>91%</span>
+                        </div>
+                        <div class="bar">
+                            <div class="bar-fill" style="width: 91%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Powerful Features</h2>
+                <p>Discover how CareerMatrix can help you understand and leverage your skills assessment data.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Interactive Visualizations</h3>
+                    <p>Beautiful charts and graphs that transform your assessment scores into easy-to-understand visual insights.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI-Powered Analysis</h3>
+                    <p>Our advanced AI compares your skills with job requirements to give you personalized career recommendations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Skill Gap Identification</h3>
+                    <p>Discover exactly which skills you need to develop to reach your career goals and see recommended resources.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Integration Ready</h3>
+                    <p>Easy integration with existing HR systems and assessment platforms with our Python-powered API.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Analysis Section -->
+    <section class="ai-analysis" id="ai-analysis">
+        <div class="container">
+            <div class="section-title">
+                <h2>AI-Powered Job Matching</h2>
+                <p>Get personalized insights on how well your skills match specific job descriptions using our advanced AI model.</p>
+            </div>
+            <div class="analysis-container">
+                <div class="analysis-text">
+                    <h3>Optimize Your Job Search</h3>
+                    <p>Paste a job description below and our AI will analyze how well your assessment results match the required skills and qualifications.</p>
+                    <p>You'll receive:</p>
+                    <ul style="margin: 1rem 0 2rem 1.5rem;">
+                        <li>Compatibility score with the job</li>
+                        <li>Skills gap analysis</li>
+                        <li>Personalized recommendations</li>
+                        <li>Actionable improvement steps</li>
+                    </ul>
+                    <textarea id="jobDescription" class="job-description-input" placeholder="Paste the job description here (e.g. 'Looking for a full-stack developer with 3+ years of experience in JavaScript and Python...')"></textarea>
+                    <button id="analyzeJob" class="btn btn-primary">Analyze Job Description <i class="fas fa-search ml-1"></i></button>
+                    <div style="margin-top: 2rem; background-color: var(--light); padding: 1.5rem; border-radius: 8px;">
+                        <h4><i class="fas fa-lightbulb" style="color: var(--warning);"></i> Pro Tip</h4>
+                        <p>For best results, include the full job description with required skills and qualifications. The more detail you provide, the more accurate our analysis will be.</p>
+                    </div>
+                </div>
+                <div class="analysis-visual">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--primary);">Analysis Results</h3>
+                    <div class="analysis-result" id="analysisResult" style="display: none;">
+                        <h4 style="margin-bottom: 1rem;">Job Match Score: <span id="matchScore">0%</span></h4>
+                        <div class="match-bar">
+                            <div class="match-fill" id="matchFill" style="width: 0%"></div>
+                        </div>
+                        <h4 style="margin: 1.5rem 0 0.8rem;">Skill Matching Breakdown</h4>
+                        <div id="skillMatches"></div>
+                        <div class="recommendations">
+                            <h4><i class="fas fa-check-circle" style="color: var(--success);"></i> Recommendations</h4>
+                            <div id="recommendationsList"></div>
+                        </div>
+                    </div>
+                    <div class="analysis-result" id="analysisPlaceholder">
+                        <div style="text-align: center; padding: 2rem 0;">
+                            <i class="fas fa-search" style="font-size: 3rem; color: var(--gray); opacity: 0.5; margin-bottom: 1.5rem;"></i>
+                            <h4 style="color: var(--gray); margin-bottom: 1rem;">Your Analysis Awaits</h4>
+                            <p style="color: var(--gray);">Submit a job description to see how well your skills match and get personalized recommendations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Python Integration -->
+    <section class="python-integration" id="python">
+        <div class="container">
+            <div class="section-title">
+                <h2>Seamless Python Integration</h2>
+                <p>Powered by advanced natural language processing with HuggingFace transformers</p>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="margin-bottom: 2rem;">Our backend uses state-of-the-art NLP models to extract and analyze skills from job descriptions. The integration is simple with our Python package.</p>
+                
+                <div class="code-container">
+                    <code>
+                        <span class="code-comment"># Use a pipeline as a high-level helper</span><br>
+                        <span class="code-keyword">from</span> transformers <span class="code-keyword">import</span> pipeline<br><br>
+                        
+                        <span class="code-comment"># Load the pretrained job description analysis model</span><br>
+                        pipe = pipeline(<span class="code-string">"text-classification"</span>, <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model=<span class="code-string">"Pazel/bert-fom-job-description-assignment"</span>)<br><br>
+                        
+                        <span class="code-comment"># Analyze a job description</span><br>
+                        job_description = <span class="code-string">"Looking for a Python developer with..."</span><br>
+                        result = pipe(job_description)<br><br>
+                        
+                        <span class="code-comment"># Output structured analysis</span><br>
+                        <span class="code-keyword">print</span>(<span class="code-string">"Match analysis:"</span>, result)
+                    </code>
+                </div>
+                <p style="margin-top: 2rem;">This model classifies job descriptions into relevant skill categories and matches them against your assessment profile to provide accurate compatibility scoring.</p>
+                <button class="btn btn-primary" style="margin-top: 1.5rem;"><i class="fab fa-python"></i> View API Documentation</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Transform Your Career Data?</h2>
+            <p style="max-width: 700px; margin: 0 auto 2rem;">Join thousands of professionals who use CareerMatrix to understand their skills and match with ideal job opportunities.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">Get Started Now</a>
+                <a href="#" class="btn btn-outline">See Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3><i class="fas fa-brain"></i> CareerMatrix</h3>
+                    <p style="margin-top: 1rem; color: var(--gray);">Transforming assessment data into career growth opportunities through AI-powered insights.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Features</h3>
+                    <ul>
+                        <li><a href="#">Assessment Visualization</a></li>
+                        <li><a href="#">AI Job Matching</a></li>
+                        <li><a href="#">Skill Gap Analysis</a></li>
+                        <li><a href="#">Learning Recommendations</a></li>
+                        <li><a href="#">API Integration</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Research</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 CareerMatrix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Initialize the main chart
+        function initMainChart() {
+            const ctx = document.getElementById('mainChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Technical', 'Problem Solving', 'Communication', 'Leadership', 'Creativity', 'Teamwork', 'Time Management'],
+                    datasets: [{
+                        label: 'Your Skills',
+                        data: [82, 76, 65, 58, 91, 72, 68],
+                        backgroundColor: 'rgba(67, 97, 238, 0.2)',
+                        borderColor: 'rgba(67, 97, 238, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(67, 97, 238, 1)',
+                        pointRadius: 4
+                    }, {
+                        label: 'Industry Average',
+                        data: [65, 70, 75, 60, 80, 78, 72],
+                        backgroundColor: 'rgba(114, 9, 183, 0.2)',
+                        borderColor: 'rgba(114, 9, 183, 1)',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        pointBackgroundColor: 'rgba(114, 9, 183, 1)',
+                        pointRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true,
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            suggestedMin: 30,
+                            suggestedMax: 100,
+                            ticks: {
+                                stepSize: 20,
+                                backdropColor: 'transparent'
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 12,
+                                    family: 'Poppins'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: 'Poppins'
+                                },
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            bodyFont: {
+                                family: 'Poppins'
+                            },
+                            titleFont: {
+                                family: 'Poppins'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Handle job analysis form submission
+        document.getElementById('analyzeJob').addEventListener('click', async function() {
+            const jobDescription = document.getElementById('jobDescription').value.trim();
+            const analysisResult = document.getElementById('analysisResult');
+            const analysisPlaceholder = document.getElementById('analysisPlaceholder');
+            const analyzeBtn = this;
+            
+            if (!jobDescription) {
+                showToast('Please enter a job description to analyze');
+                return;
+            }
+            
+            analyzeBtn.disabled = true;
+            analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
+            
+            try {
+                // Call the backend API
+                const response = await fetch('http://localhost:5000/api/analyze-job', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        job_description: jobDescription
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to analyze job description');
+                }
+                
+                const data = await response.json();
+                
+                analysisPlaceholder.style.display = 'none';
+                analysisResult.style.display = 'block';
+                
+                // Update match score
+                document.getElementById('matchScore').textContent = data.match_score + '%';
+                document.getElementById('matchFill').style.width = data.match_score + '%';
+                
+                // Update skill matches
+                const skillMatchesContainer = document.getElementById('skillMatches');
+                skillMatchesContainer.innerHTML = '';
+                
+                data.skill_matches.forEach(skill => {
+                    const skillDiv = document.createElement('div');
+                    skillDiv.className = 'skill-match';
+                    skillDiv.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>${skill.name}</span>
+                            <span>${skill.match.toFixed(1)}%</span>
+                        </div>
+                        <div style="height: 8px; background-color: var(--light-gray); border-radius: 4px;">
+                            <div style="height: 100%; width: ${skill.match}%; background-color: ${getMatchColor(skill.match)}; border-radius: 4px;"></div>
+                        </div>
+                    `;
+                    skillMatchesContainer.appendChild(skillDiv);
+                });
+                
+                // Update recommendations
+                const recommendationsList = document.getElementById('recommendationsList');
+                recommendationsList.innerHTML = '';
+                
+                data.recommendations.forEach(rec => {
+                    const recDiv = document.createElement('div');
+                    recDiv.className = 'recommendation-item';
+                    recDiv.innerHTML = `
+                        <i class="fas fa-lightbulb recommendation-icon"></i>
+                        <span>${rec}</span>
+                    `;
+                    recommendationsList.appendChild(recDiv);
+                });
+                
+                showToast('Job analysis completed successfully!');
+            } catch (error) {
+                console.error('Error analyzing job description:', error);
+                showToast('Error analyzing job description. Please try again.');
+            } finally {
+                analyzeBtn.disabled = false;
+                analyzeBtn.innerHTML = 'Analyze Job Description <i class="fas fa-search ml-1"></i>';
+            }
+        });
+
+        // Helper function to get color based on match percentage
+        function getMatchColor(percentage) {
+            if (percentage >= 75) return 'var(--success)';
+            if (percentage >= 50) return 'var(--warning)';
+            return 'var(--danger)';
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            initMainChart();
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
